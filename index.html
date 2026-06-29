@@ -583,8 +583,8 @@
                     <input type="hidden" name="_captcha" value="false">
                     <input type="text" name="_honey" style="display:none">
                     <div class="form-group"><label for="name">Jméno</label><input type="text" id="name" name="name" placeholder="Vaše jméno" required></div>
-                    <div class="form-group"><label for="email">E-mail</label><input type="email" id="email" name="email" placeholder="vas@email.cz" required></div>
-                    <div class="form-group"><label for="phone">Telefon</label><input type="tel" id="phone" name="phone" placeholder="+420 ..."></div>
+                    <div class="form-group"><label for="email">E-mail</label><input type="email" id="email" name="email" placeholder="vas@email.cz" pattern="[^@\s]+@[^@\s]+\.[^@\s]{2,}" title="Zadejte platnou e-mailovou adresu, např. vas@email.cz" required></div>
+                    <div class="form-group"><label for="phone">Telefon</label><input type="tel" id="phone" name="phone" placeholder="+420 777 123 456" inputmode="tel" autocomplete="tel" pattern="(\+420|00420|420)?\s*\d{3}\s*\d{3}\s*\d{3}" title="Zadejte 9 číslic, např. 777 123 456 nebo +420 777 123 456"></div>
                     <div class="form-group"><label for="message">Zpráva</label><textarea id="message" name="message" placeholder="Popište prosím váš projekt nebo dotaz..." required></textarea></div>
                     <label class="form-consent">
                         <input type="checkbox" id="gdpr-consent" required>
@@ -651,15 +651,17 @@
         var f = document.getElementById('contact-form');
         var msgs = {
             name:{valueMissing:'Prosím vyplňte vaše jméno.'},
-            email:{valueMissing:'Prosím vyplňte e-mailovou adresu.',typeMismatch:'Zadejte platnou e-mailovou adresu (např. vas@email.cz).'},
+            email:{valueMissing:'Prosím vyplňte e-mailovou adresu.',typeMismatch:'Zadejte platnou e-mailovou adresu (např. vas@email.cz).',patternMismatch:'Zadejte platnou e-mailovou adresu (např. vas@email.cz).'},
+            phone:{patternMismatch:'Zadejte platné telefonní číslo – 9 číslic (např. 777 123 456 nebo +420 777 123 456).'},
             message:{valueMissing:'Prosím napište vaši zprávu.'},
             'gdpr-consent':{valueMissing:'Pro odeslání je nutný souhlas se zpracováním osobních údajů.'}
         };
-        f.querySelectorAll('[required]').forEach(function(field){
+        f.querySelectorAll('[required], #phone').forEach(function(field){
             var m = msgs[field.id] || msgs[field.name] || {};
             function setMsg(){
                 if(field.validity.valueMissing && m.valueMissing){ field.setCustomValidity(m.valueMissing); }
                 else if(field.validity.typeMismatch && m.typeMismatch){ field.setCustomValidity(m.typeMismatch); }
+                else if(field.validity.patternMismatch && m.patternMismatch){ field.setCustomValidity(m.patternMismatch); }
                 else { field.setCustomValidity(''); }
             }
             field.addEventListener('invalid', setMsg);
