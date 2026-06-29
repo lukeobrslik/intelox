@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelox – Inteligentní elektroinstalace &amp; chytré řízení budov</title>
+    <meta name="description" content="Intelox – elektroinstalace a chytré řízení budov. Certifikovaný Loxone partner pro domácnosti i komerční prostory: osvětlení, stínění, vytápění, bezpečnost a automatizace.">
+    <meta property="og:title" content="Intelox – Inteligentní elektroinstalace &amp; chytré řízení budov">
+    <meta property="og:description" content="Elektroinstalace a chytré řízení budov na klíč. Certifikovaný Loxone partner.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="intelox-hero.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --green: #69C12E;
+            --green-dark: #5aab26;
+            --green-light: #e8f5de;
+            --navy: #16212c;
+            --navy-soft: #1e2a37;
+            --text: #18242e;
+            --text-secondary: #50606c;
+            --bg: #f7faf5;
+            --white: #ffffff;
+            --border: #e2e9e0;
+            --radius: 14px;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background-color: var(--bg);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, .brand-word { font-family: 'Montserrat', 'Inter', sans-serif; }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(18, 26, 34, 0.55);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            transition: background 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.92);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+        }
+
+        .nav-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0.7rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo { display: block; text-decoration: none; color: #ffffff; transition: color 0.3s; }
+        nav.scrolled .nav-logo { color: var(--navy); }
+
+        /* ── SHARED LOGO LOCKUP ── */
+        .logo { display: inline-flex; align-items: baseline; gap: 0.3em; color: inherit; }
+        .logo-mark { display: block; width: auto; height: 0.78em; flex: none; }
+        .logo-mark .lg-stroke { stroke: currentColor; transition: stroke 0.3s; }
+        .logo-word { font-family: 'Montserrat', 'Inter', sans-serif; font-weight: 700; font-size: 1em; letter-spacing: -0.01em; line-height: 1; color: currentColor; transition: color 0.3s; }
+        .nav-logo .logo { font-size: 1.6rem; }
+
+        .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: rgba(255,255,255,0.85);
+            font-size: 0.92rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        nav.scrolled .nav-links a { color: var(--text-secondary); }
+        .nav-links a:hover { color: var(--green); }
+        .nav-cta {
+            padding: 0.5rem 1.1rem;
+            background: var(--green);
+            color: #fff !important;
+            border-radius: 100px;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 16px rgba(105,193,46,0.35);
+        }
+        .nav-cta:hover { background: var(--green-dark); color:#fff !important; }
+
+        /* ── HERO STAGE ── */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            background: url('Designer 3.png') center center / cover no-repeat;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(180deg, rgba(15,22,30,0.45) 0%, rgba(15,22,30,0.12) 30%, rgba(15,22,30,0.20) 70%, rgba(15,22,30,0.65) 100%);
+            pointer-events: none;
+        }
+
+        .hero-brand {
+            position: absolute;
+            top: clamp(7rem, 15vh, 9rem);
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 1120px;
+            padding: 0 1.5rem;
+            z-index: 5;
+            pointer-events: none;
+        }
+        .hero-brand a, .hero-brand button { pointer-events: auto; }
+        .hero-headline { color: #fff; font-weight: 700; font-size: clamp(2rem, 5.2vw, 3.15rem); line-height: 1.1; letter-spacing: -0.02em; text-shadow: 0 3px 16px rgba(0,0,0,0.45); }
+        .hero-brand .hero-partnertag { margin-top: 0.95rem; }
+        .hero-tagline {
+            margin-top: 0.7rem;
+            color: rgba(255,255,255,0.92);
+            font-weight: 600;
+            font-size: clamp(0.72rem, 1.5vw, 0.95rem);
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        .hero-partnertag {
+            margin-top: 0.35rem;
+            font-size: clamp(0.72rem, 1.5vw, 0.95rem);
+            font-weight: 700;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        .hero-partnertag .lox { color: var(--green); }
+        .hero-partnertag .ptn { color: rgba(255,255,255,0.92); }
+        .hero-cta-wrap { margin-top: 2rem; display: flex; gap: 0.8rem; flex-wrap: wrap; }
+        .hero-cta {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.8rem 1.7rem;
+            background: var(--green); color: #fff;
+            text-decoration: none; border-radius: 100px;
+            font-weight: 600; font-size: 0.95rem;
+            box-shadow: 0 6px 22px rgba(105,193,46,0.4);
+            transition: background 0.2s, transform 0.2s;
+        }
+        .hero-cta:hover { background: var(--green-dark); transform: translateY(-2px); }
+        .hero-cta svg { width: 18px; height: 18px; }
+        .hero-cta.ghost {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: none; backdrop-filter: blur(4px);
+        }
+        .hero-cta.ghost:hover { background: rgba(255,255,255,0.22); }
+
+        /* Loxone partner badge */
+        .hero-badge-lox {
+            position: absolute;
+            bottom: clamp(1.2rem, 4vh, 2.4rem);
+            left: clamp(1.4rem, 4.5vw, 4rem);
+            z-index: 5;
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            padding: 0.55rem 1.1rem 0.55rem 0.9rem;
+            background: linear-gradient(100deg, var(--green) 0%, var(--green-dark) 100%);
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        .hero-badge-lox .bx-title { color:#fff; font-weight:700; font-family:'Montserrat',sans-serif; letter-spacing:0.08em; line-height:1.1; font-size:1.02rem; }
+        .hero-badge-lox .bx-sub { color: rgba(255,255,255,0.92); font-size:0.72rem; font-weight:500; }
+        .hero-badge-lox svg { width: 22px; height: 22px; color: #fff; }
+
+        /* ── INTERACTIVE AREA ICONS (spodní vycentrovaný pruh) ── */
+        .hero-areas {
+            position: absolute; z-index: 5;
+            left: 50%; transform: translateX(-50%);
+            bottom: clamp(3rem, 8vh, 5rem);
+            width: 100%; max-width: 1120px;
+            padding: 0 1.5rem;
+            display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center;
+            gap: 1.1rem 1.4rem;
+        }
+        .area-chip {
+            position: relative;
+            display: flex; flex-direction: column; align-items: center;
+            gap: 0.5rem; text-decoration: none; width: 92px;
+            background: none; border: none; padding: 0; font: inherit;
+            color: inherit; cursor: pointer;
+        }
+        /* ── POPUP BUBLINA NAD IKONOU ── */
+        .area-tip {
+            position: absolute;
+            bottom: calc(100% + 14px);
+            left: 50%;
+            transform: translateX(-50%) translateY(6px);
+            width: 230px;
+            background: #fff;
+            color: var(--text);
+            text-align: left;
+            border-radius: 12px;
+            padding: 0.85rem 0.95rem;
+            box-shadow: 0 14px 38px rgba(0,0,0,0.32);
+            opacity: 0; visibility: hidden; pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+            z-index: 20;
+        }
+        .area-tip strong {
+            display: block;
+            font-family: 'Montserrat', 'Inter', sans-serif;
+            font-size: 0.9rem; font-weight: 700; margin-bottom: 0.25rem;
+            color: var(--navy);
+        }
+        .area-tip span {
+            display: block; font-size: 0.82rem; line-height: 1.5;
+            color: var(--text-secondary); text-transform: none; letter-spacing: normal; font-weight: 400;
+        }
+        .area-tip::after {
+            content: ''; position: absolute; top: 100%; left: 50%;
+            transform: translateX(-50%);
+            border: 8px solid transparent; border-top-color: #fff;
+        }
+        .area-chip:hover .area-tip,
+        .area-chip:focus-visible .area-tip,
+        .area-chip.is-open .area-tip {
+            opacity: 1; visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+        .area-chip .node-circle {
+            width: 54px; height: 54px; border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.85);
+            background: rgba(18,26,34,0.35);
+            backdrop-filter: blur(3px);
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+            transition: transform 0.22s ease, border-color 0.22s, background 0.22s, box-shadow 0.22s;
+        }
+        .area-chip .node-circle svg { width: 25px; height: 25px; stroke: #fff; }
+        .area-chip .node-label {
+            color: #fff; font-size: 0.7rem; font-weight: 600;
+            letter-spacing: 0.04em; text-transform: uppercase; text-align: center;
+            line-height: 1.2;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.75);
+            transition: color 0.22s;
+        }
+        .area-chip:hover .node-circle,
+        .area-chip:focus-visible .node-circle {
+            transform: translateY(-4px) scale(1.06);
+            border-color: var(--green);
+            background: rgba(105,193,46,0.32);
+            box-shadow: 0 8px 22px rgba(0,0,0,0.4);
+        }
+        .area-chip:hover .node-label,
+        .area-chip:focus-visible .node-label { color: #bdf08a; }
+
+        .scroll-hint {
+            position: absolute; bottom: 1.3rem; left: 50%; transform: translateX(-50%);
+            z-index: 5; color: rgba(255,255,255,0.8); font-size: 0.72rem;
+            letter-spacing: 0.12em; text-transform: uppercase; text-align: center;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+        }
+        .scroll-hint svg { width: 20px; height: 20px; display:block; margin: 0.3rem auto 0; animation: bob 1.8s ease-in-out infinite; }
+        @keyframes bob { 0%,100%{transform:translateY(0);} 50%{transform:translateY(6px);} }
+
+        /* ── SECTION SHARED ── */
+        .section { padding: 5.5rem 1.5rem; }
+        .section-inner { max-width: 1120px; margin: 0 auto; }
+        .section-label { font-size: 0.8rem; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.6rem; }
+        .section-title { font-size: clamp(1.7rem, 3.4vw, 2.3rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.8rem; }
+        .section-title .accent { color: var(--green); }
+        .section-intro { color: var(--text-secondary); font-size: 1.05rem; max-width: 640px; margin-bottom: 3rem; }
+
+        /* ── SLUŽBY ── */
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .service-card {
+            padding: 2rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--white);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .service-card:hover { border-color: var(--green); box-shadow: 0 8px 24px rgba(105,193,46,0.1); }
+        .service-icon {
+            width: 52px; height: 52px; background: var(--green-light);
+            border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem;
+        }
+        .service-icon svg { width: 26px; height: 26px; stroke: var(--green-dark); }
+        .service-card h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .service-card p { color: var(--text-secondary); font-size: 0.92rem; }
+
+        /* ── PROČ / brand strip ── */
+        .why { background: var(--navy); color: #fff; }
+        .why .section-title { color: #fff; }
+        .why-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 3rem; align-items: center; }
+        .why p.lead { color: rgba(255,255,255,0.82); font-size: 1.05rem; margin-bottom: 1.4rem; }
+        .why ul { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; }
+        .why li { display: flex; gap: 0.7rem; align-items: flex-start; color: rgba(255,255,255,0.9); font-size: 0.98rem; }
+        .why li svg { width: 22px; height: 22px; min-width: 22px; stroke: var(--green); margin-top: 1px; }
+        .why-figure { position: relative; border-radius: var(--radius); overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+        .why-figure img { width: 100%; display: block; }
+        .why-figure .figure-logo {
+            position: absolute; top: clamp(0.9rem, 2.4vw, 1.5rem); left: clamp(0.9rem, 2.4vw, 1.5rem);
+            color: #fff; z-index: 2;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.45);
+        }
+        .why-figure .figure-logo .logo { font-size: clamp(1.4rem, 2.6vw, 1.9rem); }
+        .why-figure .figure-logo .logo-mark { filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4)); }
+        .why-partner { display: inline-flex; align-items: center; gap: 0.75rem; margin-top: 1.8rem; text-decoration: none; }
+        .why-partner img { height: 34px; opacity: 0.9; border-radius: 4px; }
+        .why-partner span { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.02em; color: rgba(255,255,255,0.82); transition: color 0.2s; }
+        .why-partner:hover span { color: #fff; }
+
+        /* ── KONTAKT ── */
+        .contact-inner { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+        .contact-info { display: flex; flex-direction: column; gap: 1.6rem; }
+        .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+        .contact-item-icon { width: 42px; height: 42px; min-width: 42px; background: var(--green-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+        .contact-item-icon svg { width: 20px; height: 20px; stroke: var(--green-dark); }
+        .contact-item-label { font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.1rem; }
+        .contact-item-value { font-weight: 500; font-size: 0.96rem; }
+        .contact-item-value a { color: inherit; text-decoration: none; transition: color 0.2s; }
+        .contact-item-value a:hover { color: var(--green); }
+
+        .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+        .contact-form.is-hidden { display: none; }
+        .form-group { display: flex; flex-direction: column; gap: 0.3rem; }
+        .form-group label { font-size: 0.85rem; font-weight: 500; color: var(--text-secondary); }
+        .form-group input, .form-group textarea {
+            padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: 8px;
+            font-family: inherit; font-size: 0.95rem; color: var(--text); background: var(--white);
+            transition: border-color 0.2s, box-shadow 0.2s; outline: none;
+        }
+        .form-group input:focus, .form-group textarea:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(105,193,46,0.15); }
+        .form-group textarea { min-height: 120px; resize: vertical; }
+        .form-consent { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; }
+        .form-consent input[type="checkbox"] { margin-top: 0.2rem; min-width: 16px; min-height: 16px; accent-color: var(--green); }
+        .form-consent a { color: var(--green); text-decoration: underline; }
+        .form-submit {
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+            padding: 0.85rem 2rem; background: var(--green); color: white; border: none; border-radius: 100px;
+            font-family: inherit; font-weight: 600; font-size: 0.95rem; cursor: pointer;
+            transition: background 0.2s, transform 0.2s; align-self: flex-start;
+        }
+        .form-submit:hover { background: var(--green-dark); transform: translateY(-1px); }
+        .form-submit svg { width: 18px; height: 18px; }
+        .form-success { display: none; text-align: center; padding: 2rem 1rem; }
+        .form-success.is-visible { display: block; }
+        .form-success-icon { width: 56px; height: 56px; background: var(--green-light); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+        .form-success-icon svg { width: 28px; height: 28px; stroke: var(--green-dark); }
+        .form-success h3 { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .form-success p { color: var(--text-secondary); font-size: 0.95rem; }
+
+        /* ── FOOTER ── */
+        footer { padding: 2.2rem 1.5rem; background: var(--navy); color: rgba(255,255,255,0.75); }
+        .footer-inner { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+        .footer-brand { color: #fff; }
+        .footer-brand .logo { font-size: 1.05rem; }
+        .footer-copy { font-size: 0.8rem; }
+        .footer-links { display: flex; gap: 1.2rem; }
+        .footer-links a { color: rgba(255,255,255,0.75); font-size: 0.8rem; text-decoration: none; }
+        .footer-links a:hover { color: var(--green); }
+        .footer-partner a { display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+        .footer-partner img { height: 26px; opacity: 0.8; border-radius: 3px; }
+        .footer-partner span { font-size: 0.8rem; color: rgba(255,255,255,0.75); }
+
+        /* ── RESPONSIVITA ── */
+        @media (max-width: 900px) {
+            .why-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+        }
+        @media (max-width: 768px) {
+            .nav-links a:not(.nav-cta) { display: none; }
+            .hero { min-height: 88vh; background-attachment: scroll; }
+            .hero-areas { gap: 0.9rem 0.6rem; bottom: clamp(2rem, 6vh, 4rem); }
+            .area-chip { width: 84px; }
+            .area-chip .node-circle { width: 48px; height: 48px; }
+            .area-chip .node-circle svg { width: 22px; height: 22px; }
+            .scroll-hint { display: none; }
+            .section { padding: 3.5rem 1.25rem; }
+        }
+        @media (max-width: 560px) {
+            .footer-inner { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SDÍLENÝ LOGO SYMBOL (pouze značka domu – nápis je textem) -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+            <g id="intelox-mark" class="lg-stroke" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M 0,40.48 V 14.95 L 19.47,0 38.94,14.95 V 40.48 H 25.01 M 14.07,40.48 H 0" />
+                <path d="M 9.811,25.421 V 30.813 L 14.070,34.081 V 40.48" />
+                <path d="M 19.471,40.48 V 16.436" />
+                <path d="M 29.130,23.303 V 27.504 L 24.871,30.772 V 40.48" />
+                <circle cx="19.471" cy="13.772" r="2.66" />
+                <circle cx="9.811" cy="22.758" r="2.66" />
+                <circle cx="29.130" cy="20.640" r="2.66" />
+            </g>
+        </defs>
+    </svg>
+
+    <!-- NAVIGACE -->
+    <nav id="nav">
+        <div class="nav-inner">
+            <a href="#uvod" class="nav-logo" aria-label="Intelox – domů">
+                <span class="logo">
+                    <svg class="logo-mark" viewBox="-1.25 -1.25 41.44 42.98" aria-hidden="true"><use href="#intelox-mark"/></svg>
+                    <span class="logo-word">Intelox</span>
+                </span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#sluzby">Služby</a></li>
+                <li><a href="#proc">Proč Intelox</a></li>
+                <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero" id="uvod">
+        <div class="hero-brand">
+            <h1 class="hero-headline">Inteligentní elektroinstalace<br>a chytré řízení budov</h1>
+            <div class="hero-cta-wrap">
+                <a href="#kontakt" class="hero-cta">
+                    Nezávazná konzultace
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="#sluzby" class="hero-cta ghost">Naše služby</a>
+            </div>
+        </div>
+
+        <!-- OBLASTI – spodní vycentrovaný pruh ikon s popup bublinami -->
+        <div class="hero-areas" aria-label="Co umí chytrá budova">
+            <button type="button" class="area-chip">
+                <span class="area-tip"><strong>Osvětlení</strong><span>Už nehledáte vypínač. Světla se sama rozsvítí, když přijdete, a zhasnou, když odejdete. O úsporu i tu pravou náladu se dům postará za vás.</span></span>
+                <span class="node-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"/></svg></span>
+                <span class="node-label">Osvětlení</span>
+            </button>
+            <button type="button" class="area-chip">
+                <span class="area-tip"><strong>Stínění</strong><span>Žaluzie se samy stáhnou před sluncem a ráno za vás zase otevřou. V létě udrží chládek, v zimě teplo – a soukromí, kdykoli chcete, bez jediného doteku.</span></span>
+                <span class="node-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="4" rx="1"/><path d="M5 7v13M19 7v13M5 11h14M5 15h14M5 19h14"/></svg></span>
+                <span class="node-label">Stínění</span>
+            </button>
+            <button type="button" class="area-chip">
+                <span class="area-tip"><strong>Vytápění a klima</strong><span>V každé místnosti přesně taková teplota, jakou máte rádi, a ve správný čas. Dům přitápí jen tam, kde právě jste – komfort a úspora energie za vás.</span></span>
+                <span class="node-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/></svg></span>
+                <span class="node-label">Vytápění a klima</span>
+            </button>
+            <button type="button" class="area-chip">
+                <span class="area-tip"><strong>Multimédia</strong><span>Oblíbená hudba vás uvítá v každé místnosti a televizi i zábavu ovládáte z jednoho místa. Pohodlí celého domu jediným dotykem.</span></span>
+                <span class="node-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span>
+                <span class="node-label">Multimédia</span>
+            </button>
+            <button type="button" class="area-chip">
+                <span class="area-tip"><strong>Energie a monitoring</strong><span>Dům sám využije co nejvíc z fotovoltaiky a spotřebiče zapne, když je energie nejlevnější. Nižší účty bez vašeho hlídání.</span></span>
+                <span class="node-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="20" x2="6" y2="14"/><line x1="12" y1="20" x2="12" y2="9"/><line x1="18" y1="20" x2="18" y2="4"/></svg></span>
+                <span class="node-label">Energie a monitoring</span>
+            </button>
+            <button type="button" class="area-chip">
+                <span class="area-tip"><strong>Bezpečnost</strong><span>Dům hlídá za vás – alarm, kamery, detekce kouře i úniku vody. Když se něco děje, okamžitě vás upozorní do telefonu, ať jste kdekoli.</span></span>
+                <span class="node-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+                <span class="node-label">Bezpečnost</span>
+            </button>
+            <button type="button" class="area-chip">
+                <span class="area-tip"><strong>Přístup a vrátný</strong><span>Vejdete bez klíče a uvidíte, kdo zvoní, i když nejste doma. Návštěvě otevřete na dálku z mobilu – vrátného máte vždy v kapse.</span></span>
+                <span class="node-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="M21 2 11.4 11.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></span>
+                <span class="node-label">Přístup a vrátný</span>
+            </button>
+            <button type="button" class="area-chip">
+                <span class="area-tip"><strong>Ovládání v aplikaci</strong><span>Celý dům máte na dlani odkudkoli. Zapomněli jste zhasnout nebo zamknout? Vyřešíte to jediným klepnutím, ať jste kdekoli.</span></span>
+                <span class="node-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span>
+                <span class="node-label">Ovládání v aplikaci</span>
+            </button>
+            <button type="button" class="area-chip">
+                <span class="area-tip"><strong>Automatizace a scénáře</strong><span>Jedním tlačítkem „Odchod" nebo „Dobrou noc" dům zhasne, zatáhne žaluzie, sníží teplotu a zamkne. Desítky úkonů udělá za vás.</span></span>
+                <span class="node-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
+                <span class="node-label">Automatizace a scénáře</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- SLUŽBY -->
+    <section class="section" id="sluzby">
+        <div class="section-inner">
+            <p class="section-label">Co nabízíme</p>
+            <h2 class="section-title">Od návrhu po realizaci</h2>
+            <p class="section-intro">Provedeme vás celým projektem chytré elektroinstalace — od první konzultace až po dlouhodobý servis.</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+                    <h3>Konzultace a návrh</h3>
+                    <p>Posoudíme vaše potřeby a navrhneme optimální řešení inteligentní elektroinstalace na míru projektu.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+                    <h3>Dodávka a instalace</h3>
+                    <p>Kompletní realizace systému Loxone — kabeláž, řídicí jednotky, senzory i ovládací prvky.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                    <h3>Servis a podpora</h3>
+                    <p>Dlouhodobá péče o vaši instalaci, aktualizace systému, rozšíření a technická podpora.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROČ INTELOX -->
+    <section class="section why" id="proc">
+        <div class="section-inner why-grid">
+            <div>
+                <p class="section-label">Proč Intelox</p>
+                <h2 class="section-title">Spolehlivý partner pro chytrou budovu</h2>
+                <p class="lead">Jsme certifikovaný Loxone partner. Specializujeme se na inteligentní elektroinstalace pro rodinné domy, byty i komerční prostory — s důrazem na kvalitu, spolehlivost a dlouhodobou hodnotu.</p>
+                <ul>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Osobní přístup a férové jednání</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Jeden dodavatel od návrhu po servis</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Otevřené řešení bez měsíčních poplatků</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Řešení na míru i pro náročné projekty</li>
+                </ul>
+                <a class="why-partner" href="https://www.loxone.com/cscz/" target="_blank" rel="noopener">
+                    <img src="Loxone_Logo-Partner_Silver_2019.png" alt="Loxone partner">
+                    <span>Certifikovaný Loxone partner</span>
+                </a>
+            </div>
+            <div class="why-figure">
+                <span class="figure-logo">
+                    <span class="logo">
+                        <svg class="logo-mark" viewBox="-1.25 -1.25 41.44 42.98" aria-hidden="true"><use href="#intelox-mark"/></svg>
+                        <span class="logo-word">Intelox</span>
+                    </span>
+                </span>
+                <img src="Designer 3.png" alt="Inteligentní dům Intelox při západu slunce">
+            </div>
+        </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section class="section" id="kontakt" style="background: var(--white); border-top:1px solid var(--border);">
+        <div class="contact-inner">
+            <div>
+                <p class="section-label">Spojte se s námi</p>
+                <h2 class="section-title">Nezávazná konzultace</h2>
+                <p style="color:var(--text-secondary); margin-bottom:2rem; max-width:420px;">Plánujete stavbu nebo rekonstrukci? Ozvěte se — navrhneme řešení chytré budovy přesně podle vašich představ.</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+                        <div><p class="contact-item-label">Telefon</p><p class="contact-item-value"><a id="phone-link" href="tel:+420774838713">+420 774 838 713</a></p></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+                        <div><p class="contact-item-label">E-mail</p><p class="contact-item-value"><a id="email-link" href="mailto:info@intelox.cz">info@intelox.cz</a></p></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                        <div><p class="contact-item-label">Sídlo</p><p class="contact-item-value">Hornoměstská 143/48, 594 01 Velké Meziříčí</p></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg></div>
+                        <div><p class="contact-item-label">Fakturační údaje</p><p class="contact-item-value">IČO 24385590 · DIČ CZ9005054949</p></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+                        <div><p class="contact-item-label">Bankovní účet</p><p class="contact-item-value">368046066/0300</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <form class="contact-form" id="contact-form" action="https://formsubmit.co/lukas.obrslik@gmail.com" method="POST" target="form-iframe">
+                    <input type="hidden" name="_subject" value="Nová poptávka z webu Intelox">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="text" name="_honey" style="display:none">
+                    <div class="form-group"><label for="name">Jméno</label><input type="text" id="name" name="name" placeholder="Vaše jméno" required></div>
+                    <div class="form-group"><label for="email">E-mail</label><input type="email" id="email" name="email" placeholder="vas@email.cz" required></div>
+                    <div class="form-group"><label for="phone">Telefon</label><input type="tel" id="phone" name="phone" placeholder="+420 ..."></div>
+                    <div class="form-group"><label for="message">Zpráva</label><textarea id="message" name="message" placeholder="Popište prosím váš projekt nebo dotaz..." required></textarea></div>
+                    <label class="form-consent">
+                        <input type="checkbox" id="gdpr-consent" required>
+                        <span>Souhlasím se <a href="#gdpr" id="gdpr-link">zpracováním osobních údajů</a> za účelem odpovědi na můj dotaz.</span>
+                    </label>
+                    <button type="submit" class="form-submit">Odeslat poptávku
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    </button>
+                </form>
+                <iframe name="form-iframe" style="display:none"></iframe>
+                <div class="form-success" id="form-success">
+                    <div class="form-success-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                    <h3>Zpráva odeslána</h3>
+                    <p>Děkujeme za vaši poptávku. Ozveme se vám co nejdříve.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- GDPR -->
+        <div id="gdpr" style="display:none; padding: 3rem 0 0; max-width: 1120px; margin: 2rem auto 0; border-top:1px solid var(--border);">
+            <h2 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem;">Zásady zpracování osobních údajů</h2>
+            <div style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.8;">
+                <p><strong>Správce údajů:</strong> Lukáš Obršlík, IČO 24385590, Hornoměstská 143/48, 594 01 Velké Meziříčí (kontaktní e-mail: lukas.obrslik@gmail.com).</p>
+                <p><strong>Účel zpracování:</strong> Odpověď na váš dotaz odeslaný prostřednictvím kontaktního formuláře.</p>
+                <p><strong>Zpracovávané údaje:</strong> Jméno, e-mailová adresa, telefonní číslo, text zprávy.</p>
+                <p><strong>Právní základ:</strong> Váš souhlas (čl. 6 odst. 1 písm. a) GDPR).</p>
+                <p><strong>Doba uchování:</strong> Nejdéle 12 měsíců od odeslání, nebo do odvolání souhlasu.</p>
+                <p><strong>Vaše práva:</strong> Přístup k údajům, oprava, výmaz, omezení zpracování, námitka a přenositelnost. Souhlas lze kdykoli odvolat na výše uvedeném e-mailu.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PATIČKA -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="logo" role="img" aria-label="Intelox">
+                    <svg class="logo-mark" viewBox="-1.25 -1.25 41.44 42.98" aria-hidden="true"><use href="#intelox-mark"/></svg>
+                    <span class="logo-word">Intelox</span>
+                </span>
+            </div>
+            <p class="footer-copy">&copy; 2026 Intelox · IČO 24385590 · Všechna práva vyhrazena.</p>
+            <div class="footer-links">
+                <a href="#sluzby">Služby</a>
+                <a href="#gdpr" id="footer-gdpr-link">Ochrana údajů</a>
+            </div>
+            <div class="footer-partner">
+                <a href="https://www.loxone.com/cscz/" target="_blank" rel="noopener">
+                    <img src="Loxone_Logo-Partner_Silver_2019.png" alt="Loxone partner">
+                    <span>Certifikovaný Loxone Partner</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    (function(){
+        // Nav background on scroll
+        var nav = document.getElementById('nav');
+        function onScroll(){ if(window.scrollY > 40){ nav.classList.add('scrolled'); } else { nav.classList.remove('scrolled'); } }
+        window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+        // Czech validation messages
+        var f = document.getElementById('contact-form');
+        var msgs = {
+            name:{valueMissing:'Prosím vyplňte vaše jméno.'},
+            email:{valueMissing:'Prosím vyplňte e-mailovou adresu.',typeMismatch:'Zadejte platnou e-mailovou adresu (např. vas@email.cz).'},
+            message:{valueMissing:'Prosím napište vaši zprávu.'},
+            'gdpr-consent':{valueMissing:'Pro odeslání je nutný souhlas se zpracováním osobních údajů.'}
+        };
+        f.querySelectorAll('[required]').forEach(function(field){
+            var m = msgs[field.id] || msgs[field.name] || {};
+            function setMsg(){
+                if(field.validity.valueMissing && m.valueMissing){ field.setCustomValidity(m.valueMissing); }
+                else if(field.validity.typeMismatch && m.typeMismatch){ field.setCustomValidity(m.typeMismatch); }
+                else { field.setCustomValidity(''); }
+            }
+            field.addEventListener('invalid', setMsg);
+            field.addEventListener('input', function(){ field.setCustomValidity(''); });
+            if(field.type === 'checkbox'){ field.addEventListener('change', function(){ field.setCustomValidity(''); }); }
+        });
+        f.addEventListener('submit', function(){
+            setTimeout(function(){
+                f.classList.add('is-hidden');
+                document.getElementById('form-success').classList.add('is-visible');
+            }, 300);
+        });
+
+        // GDPR toggle
+        function toggleGdpr(e){
+            e.preventDefault();
+            var sec = document.getElementById('gdpr');
+            sec.style.display = sec.style.display === 'none' ? 'block' : 'none';
+            if(sec.style.display === 'block'){ sec.scrollIntoView({behavior:'smooth'}); }
+        }
+        var gl = document.getElementById('gdpr-link'); if(gl){ gl.addEventListener('click', toggleGdpr); }
+        var fl = document.getElementById('footer-gdpr-link'); if(fl){ fl.addEventListener('click', toggleGdpr); }
+
+        // Popup bubliny u ikon – tap na dotykových zařízeních, klik mimo zavře
+        var chips = Array.prototype.slice.call(document.querySelectorAll('.area-chip'));
+        chips.forEach(function(chip){
+            chip.addEventListener('click', function(e){
+                e.preventDefault();
+                var wasOpen = chip.classList.contains('is-open');
+                chips.forEach(function(c){ c.classList.remove('is-open'); });
+                if(!wasOpen){ chip.classList.add('is-open'); }
+            });
+        });
+        document.addEventListener('click', function(e){
+            if(!e.target.closest('.area-chip')){
+                chips.forEach(function(c){ c.classList.remove('is-open'); });
+            }
+        });
+    })();
+    </script>
+
+</body>
+</html>
