@@ -379,8 +379,20 @@
         }
         @media (max-width: 768px) {
             .nav-links a:not(.nav-cta) { display: none; }
-            .hero { min-height: 88vh; background-attachment: scroll; }
-            .hero-areas { gap: 0.9rem 0.6rem; bottom: clamp(2rem, 6vh, 4rem); }
+            .hero {
+                min-height: 100vh; height: auto;
+                display: flex; flex-direction: column; justify-content: flex-start;
+                background-attachment: scroll; padding-bottom: 2.75rem;
+            }
+            .hero-brand {
+                position: static; transform: none; left: auto; top: auto;
+                margin: 0 auto; padding-top: clamp(5.5rem, 13vh, 7.5rem);
+            }
+            .hero-areas {
+                position: static; transform: none; left: auto; bottom: auto;
+                margin: 2.75rem auto 0;
+                gap: 0.9rem 0.6rem;
+            }
             .area-chip { width: 84px; }
             .area-chip .node-circle { width: 48px; height: 48px; }
             .area-chip .node-circle svg { width: 22px; height: 22px; }
